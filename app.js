@@ -81,7 +81,7 @@ app.route('/auth/twitter/reverse')
       next();
     });
   }, function(a,b,c){
-      console.log(a, b, c)
+      console.log("***", a, b, c)
   }
 );
 
