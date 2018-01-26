@@ -131,18 +131,18 @@ app.route('/auth/twitter/reverse')
       if (err) {
         return res.send(500, { message: err.message });
       }
-
+      
    
       const bodyString = '{ "' + body.replace(/&/g, '", "').replace(/=/g, '": "') + '"}';
-      console.log(bodyString);
+      console.log('STRING BODY!', bodyString);
       const parsedBody = JSON.parse(bodyString);
-      console.log(parsedBody);
-      console.log("****", req.body)
+      console.log('JSON BODY', parsedBody);
+    
       req.body['oauth_token'] = parsedBody.oauth_token;
       req.body['oauth_token_secret'] = parsedBody.oauth_token_secret;
       req.body['user_id'] = parsedBody.user_id;
-      
- 
+    
+      console.log("!!!" , req.body)
       next();
     });
   }, passport.authenticate('twitter-token', {session: false}), function(req, res, next) {
