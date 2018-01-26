@@ -38,6 +38,7 @@ var corsOption = {
       }), function(token, tokenSecret, profile, done) {
           console.log(token)
           console.log('***!!!!', profile);
+          done();
       })
    
   
