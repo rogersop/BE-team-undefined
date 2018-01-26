@@ -32,6 +32,7 @@ app.route('/').get((req,res,next)=> {
 
 app.route('/auth/twitter/reverse')
   .post(function(req, res) {
+    console.log('reverse endpoint')
     request.post({
       url: 'https://api.twitter.com/oauth/request_token',
       oauth: {
@@ -43,8 +44,7 @@ app.route('/auth/twitter/reverse')
       if (err) {
         return res.send(500, { message: e.message });
       }
-
-      console.log('!!!!!!!REQUEST')
+      console.log('callback function')
       var jsonStr = '{ "' + body.replace(/&/g, '", "').replace(/=/g, '": "') + '"}';
       
       res.send(JSON.parse(jsonStr));
@@ -69,9 +69,9 @@ app.route('/auth/twitter/reverse')
       
    
       const bodyString = '{ "' + body.replace(/&/g, '", "').replace(/=/g, '": "') + '"}';
-      console.log('STRING BODY!', bodyString);
+  
       const parsedBody = JSON.parse(bodyString);
-      console.log('JSON BODY', parsedBody);
+    
     
       req.body['oauth_token'] = parsedBody.oauth_token;
       req.body['oauth_token_secret'] = parsedBody.oauth_token_secret;
