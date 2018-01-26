@@ -27,7 +27,7 @@ var corsOption = {
   app.use(cors(corsOption));
   app.use(bodyParser.json());
   app.use(passport.initialize());
-  app.use(passport.session());
+  // app.use(passport.session());
 
 
 
@@ -36,7 +36,7 @@ var corsOption = {
         consumerSecret: config.CONSUMER_SECRET,
         includeEmail: true
       }), function(token, tokenSecret, profile, done) {
-          
+          console.log(token)
           console.log('***!!!!', profile);
       })
    
