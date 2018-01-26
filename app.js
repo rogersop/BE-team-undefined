@@ -88,7 +88,7 @@ app.route('/auth/twitter/reverse')
     console.log(a.url)
     console.log("****************************************************************************")
     console.log(Object.keys(a))
-      request(`https://api.twitter.com/oauth/access_token?oauth_token=${a.query.oauth_verifier}`, function(err, r, body){
+      request.post(`https://api.twitter.com/oauth/access_token?oauth_token=${a.query.oauth_verifier}`, function(err, r, body){
         console.log('***', body)
       })
   }
