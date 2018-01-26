@@ -81,11 +81,9 @@ app.route('/auth/twitter/reverse')
       next();
     });
   }, function(a,b,c){
-    console.log("abody", a.body)
+    console.log("abody", a)
     console.log("****************************************************************************")
-    console.log("bbody", b.body)
-    console.log("****************************************************************************")
-    console.log("cbody", c.body)
+
       request(`https://api.twitter.com/oauth/access_token?oauth_token=${a.body.oauth_token}`, function(err, r, body){
         console.log(body)
       })
