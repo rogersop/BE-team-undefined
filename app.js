@@ -2,9 +2,6 @@ const express = require('express');
 const app = express();
 const bodyParser = require('body-parser');
 const cors = require('cors');
-const passport = require('passport');
-const TwitterTokenStrategy = require('passport-twitter-token');
-const expressJwt = require('express-jwt');
 const request = require('request');
 
 const config = {
@@ -26,55 +23,6 @@ var corsOption = {
 
   app.use(cors(corsOption));
   app.use(bodyParser.json());
-  app.use(passport.initialize());
-  // app.use(passport.session());
-
-
-
-    passport.use(new TwitterTokenStrategy({
-        consumerKey: config.CONSUMER_KEY,
-        consumerSecret: config.CONSUMER_SECRET,
-        includeEmail: true
-      }), function(token, tokenSecret, profile, done) {
-          console.log(token)
-          console.log('***!!!!', profile);
-          done();
-      })
-   
-  
-  
-
-
-var createToken = function(auth) {
-    return jwt.sign({
-      id: auth.id
-    }, 'my-secret',
-    {
-      expiresIn: 60 * 120
-    });
-  };
-  
-  var generateToken = function (req, res, next) {
-    req.token = createToken(req.auth);
-    return next();
-  };
-  
-  var sendToken = function (req, res) {
-    res.setHeader('x-auth-token', req.token);
-    return res.status(200).send(JSON.stringify(req.user));
-  };
-
-  var authenticate = expressJwt({
-    secret: 'my-secret',
-    requestProperty: 'auth',
-    getToken: function(req) {
-      if (req.headers['x-auth-token']) {
-        return req.headers['x-auth-token'];
-      }
-      return null;
-    }
-  });
-
 
 
 app.route('/').get((req,res,next)=> {
@@ -102,20 +50,6 @@ app.route('/auth/twitter/reverse')
       res.send(JSON.parse(jsonStr));
     });
   });
-
-
-  // app.route("/auth/twitter/getpage")
-  //   .get((req,res,next) => {
-  //       let token = req.query.token;
-  //       console.log("***", token)
-  //       request.get({
-  //           url: `https://api.twitter.com/oauth/authenticate?oauth_token=${token}`
-  //       }, function(err, r, body){
-  //           const bodyString = '{ "' + body.replace(/&/g, '", "').replace(/=/g, '": "') + '"}';
-     
-  //           res.send(bodyString);
-  //       })
-  //   })
 
   app.route('/auth/twitter')
   .get((req, res, next) => {
@@ -146,17 +80,10 @@ app.route('/auth/twitter/reverse')
       console.log("!!!" , req.body)
       next();
     });
-  }, passport.authenticate('twitter-token', {session: false}), function(req, res, next) {
-      if (!req.user) {
-        return res.send(401, 'User Not Authenticated');
-      }
+  }, function(a,b,c){
+      console.log(a, b, c)
+  }
+);
 
-      // prepare token for API
-      req.auth = {
-        id: req.user.id
-      };
-
-      return next();
-}, generateToken, sendToken);
 
 module.exports = app;
