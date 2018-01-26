@@ -120,8 +120,8 @@ app.route('/auth/twitter/reverse')
     request.post({
       url: `https://api.twitter.com/oauth/access_token?oauth_verifier`,
       oauth: {
-        consumer_key: 'KEY',
-        consumer_secret: 'SECRET',
+        consumer_key: config.CONSUMER_KEY,
+        consumer_secret: config.CONSUMER_SECRET,
         token: req.query.oauth_token
       },
       form: { oauth_verifier: req.query.oauth_verifier }
@@ -133,7 +133,7 @@ app.route('/auth/twitter/reverse')
       console.log("AUTH TWITER??", body);
       const bodyString = '{ "' + body.replace(/&/g, '", "').replace(/=/g, '": "') + '"}';
       const parsedBody = JSON.parse(bodyString);
-
+      console.log(parsedBody);
       req.body['oauth_token'] = parsedBody.oauth_token;
       req.body['oauth_token_secret'] = parsedBody.oauth_token_secret;
       req.body['user_id'] = parsedBody.user_id;
