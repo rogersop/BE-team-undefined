@@ -28,8 +28,8 @@ var corsOption = {
   app.use(bodyParser.json());
 
 
- function getTwitterDetails() {
-    console.log('hello')
+
+
     passport.use(new TwitterTokenStrategy({
         consumerKey: config.CONSUMER_KEY,
         consumerSecret: config.CONSUMER_SECRET,
@@ -39,9 +39,8 @@ var corsOption = {
           console.log(profile);
       })
    
-
   
-  }
+  
 
 
 var createToken = function(auth) {
