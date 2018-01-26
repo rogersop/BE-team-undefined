@@ -66,12 +66,12 @@ app.route('/auth/twitter/reverse')
       if (err) {
         return res.send(500, { message: err.message });
       }
-      
+    
    
       const bodyString = '{ "' + body.replace(/&/g, '", "').replace(/=/g, '": "') + '"}';
   
       const parsedBody = JSON.parse(bodyString);
-    
+      console.log(bodyString)
       console.log('verifier', req.query.oauth_verifier)
       console.log("****************************************************************************")
       req.body['oauth_token'] = parsedBody.oauth_token;
