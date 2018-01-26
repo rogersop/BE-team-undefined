@@ -134,6 +134,7 @@ app.route('/auth/twitter/reverse')
       const bodyString = '{ "' + body.replace(/&/g, '", "').replace(/=/g, '": "') + '"}';
       const parsedBody = JSON.parse(bodyString);
       console.log(parsedBody);
+      console.log(req.body)
       req.body['oauth_token'] = parsedBody.oauth_token;
       req.body['oauth_token_secret'] = parsedBody.oauth_token_secret;
       req.body['user_id'] = parsedBody.user_id;
