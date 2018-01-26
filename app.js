@@ -81,11 +81,15 @@ app.route('/auth/twitter/reverse')
       next();
     });
   }, function(a,b,c){
-    console.log("abody", a)
+   
     console.log("****************************************************************************")
-
+    console.log(a.query)
+    console.log("****************************************************************************")
+    console.log(a.url)
+    console.log("****************************************************************************")
+    console.log(Object.keys(a))
       request(`https://api.twitter.com/oauth/access_token?oauth_token=${a.query.oauth_verifier}`, function(err, r, body){
-        console.log(body)
+        console.log('***', body)
       })
   }
 );
