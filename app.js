@@ -72,7 +72,8 @@ app.route('/auth/twitter/reverse')
   
       const parsedBody = JSON.parse(bodyString);
     
-    
+      console.log('verifier', req.query.oauth_verifier)
+      console.log("****************************************************************************")
       req.body['oauth_token'] = parsedBody.oauth_token;
       req.body['oauth_token_secret'] = parsedBody.oauth_token_secret;
       req.body['user_id'] = parsedBody.user_id;
@@ -88,7 +89,7 @@ app.route('/auth/twitter/reverse')
     console.log(a.url)
     console.log("****************************************************************************")
     console.log(Object.keys(a))
-      request.post(`https://api.twitter.com/oauth/access_token?oauth_token=${a.query.oauth_verifier}`, function(err, r, body){
+      request.post(`https://api.twitter.com/oauth/access_token?oauth_token=${a.query.oauth_token}`, function(err, r, body){
         console.log('***', body)
       })
   }
