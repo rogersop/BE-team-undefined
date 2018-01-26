@@ -75,10 +75,10 @@ var createToken = function(auth) {
 
 
 
-// app.route('/api/auth').get((req,res,next)=> {
-//     console.log('hehehee')
-//     res.send('Hello')
-// })
+app.route('/').get((req,res,next)=> {
+
+    res.send('Hello, connected to Do-more server!')
+})
 
 app.route('/auth/twitter/reverse')
   .post(function(req, res) {
