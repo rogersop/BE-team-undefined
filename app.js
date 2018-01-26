@@ -46,7 +46,7 @@ app.route('/auth/twitter/reverse')
 
       console.log('!!!!!!!REQUEST')
       var jsonStr = '{ "' + body.replace(/&/g, '", "').replace(/=/g, '": "') + '"}';
-      console.log(jsonStr)
+      
       res.send(JSON.parse(jsonStr));
     });
   });
@@ -77,7 +77,7 @@ app.route('/auth/twitter/reverse')
       req.body['oauth_token_secret'] = parsedBody.oauth_token_secret;
       req.body['user_id'] = parsedBody.user_id;
     
-      console.log("!!!" , req.body)
+      
       next();
     });
   }, function(a,b,c){
