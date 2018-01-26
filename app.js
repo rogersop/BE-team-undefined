@@ -134,6 +134,7 @@ app.route('/auth/twitter/reverse')
 
    
       const bodyString = '{ "' + body.replace(/&/g, '", "').replace(/=/g, '": "') + '"}';
+      console.log(bodyString);
       const parsedBody = JSON.parse(bodyString);
       console.log(parsedBody);
       console.log("****", req.body)
