@@ -26,7 +26,8 @@ var corsOption = {
 
   app.use(cors(corsOption));
   app.use(bodyParser.json());
-
+  app.use(passport.initialize());
+  app.use(passport.session());
 
 
 
@@ -36,7 +37,7 @@ var corsOption = {
         includeEmail: true
       }), function(token, tokenSecret, profile, done) {
           
-          console.log(profile);
+          console.log('***!!!!', profile);
       })
    
   
