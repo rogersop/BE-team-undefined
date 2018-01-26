@@ -25,6 +25,7 @@ var corsOption = {
   };
 
   app.use(cors(corsOption));
+  app.use(bodyParser.json());
 
 
  function getTwitterDetails() {
@@ -102,21 +103,22 @@ app.route('/auth/twitter/reverse')
   });
 
 
-  app.route("/auth/twitter/getpage")
-    .get((req,res,next) => {
-        let token = req.query.token;
-        console.log("***", token)
-        request.get({
-            url: `https://api.twitter.com/oauth/authenticate?oauth_token=${token}`
-        }, function(err, r, body){
-            const bodyString = '{ "' + body.replace(/&/g, '", "').replace(/=/g, '": "') + '"}';
+  // app.route("/auth/twitter/getpage")
+  //   .get((req,res,next) => {
+  //       let token = req.query.token;
+  //       console.log("***", token)
+  //       request.get({
+  //           url: `https://api.twitter.com/oauth/authenticate?oauth_token=${token}`
+  //       }, function(err, r, body){
+  //           const bodyString = '{ "' + body.replace(/&/g, '", "').replace(/=/g, '": "') + '"}';
      
-            res.send(bodyString);
-        })
-    })
+  //           res.send(bodyString);
+  //       })
+  //   })
 
   app.route('/auth/twitter')
   .get((req, res, next) => {
+    console.log(req)
     request.post({
       url: `https://api.twitter.com/oauth/access_token?oauth_verifier`,
       oauth: {
@@ -130,11 +132,12 @@ app.route('/auth/twitter/reverse')
         return res.send(500, { message: err.message });
       }
 
-      console.log("AUTH TWITER??", body);
+      console.log("AUTH TWITER??", auth);
       const bodyString = '{ "' + body.replace(/&/g, '", "').replace(/=/g, '": "') + '"}';
       const parsedBody = JSON.parse(bodyString);
       console.log(parsedBody);
       console.log(req.body)
+      
       req.body['oauth_token'] = parsedBody.oauth_token;
       req.body['oauth_token_secret'] = parsedBody.oauth_token_secret;
       req.body['user_id'] = parsedBody.user_id;
