@@ -27,7 +27,8 @@ var corsOption = {
 
 
 app.route('/').post((req,res,next)=> {
-    console.log(req.body)
+    console.log("REQ BODY", req.body)
+    console.log(req)
     let token = req.body.token;
     let secret = req.body.secret;
     
