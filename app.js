@@ -5,8 +5,8 @@ const cors = require('cors');
 const request = require('request');
 const Twit = require('twit');
 
-let CONSUMER_KEY;
-let CONSUMER_SECRET;
+let CONSUMER_KEY = "al5LN8w9gWcirowNLtxPHtoyf";
+let CONSUMER_SECRET = "rj0C0w5tiLFsvTx1ZeKxIrAd7LFR2Q5NN8nz1gul6YbzwV4ZJp";
 
 
 var corsOption = {
