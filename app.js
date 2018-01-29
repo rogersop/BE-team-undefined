@@ -28,7 +28,7 @@ var corsOption = {
 
 app.route('/').post((req,res,next)=> {
     console.log("REQ BODY", req.body)
-    console.log(req)
+   
     let token = req.body.token;
     let secret = req.body.secret;
     
@@ -43,10 +43,24 @@ app.route('/').post((req,res,next)=> {
 
     })
 
-    T.get('/statuses/user_timeline', function(err, data, response){
-      console.log('data', data);
-      console.log('response', reponse)
-      res.send(data);
+    T.get('/statuses/home_timeline', function(err, data, response){
+      // console.log('data', data);
+     console.log(data[0])
+      let arr = [];
+      let usersInfo = data.map((user, i)=> {
+        
+        let obj = {};
+         obj.name = user.user.name;
+         obj.screen_name = user.user.screen_name;
+         obj.text = user.text;
+         obj.profile_image_url = user.user.profile_image_url;
+         
+         return obj;
+        })
+
+    
+      console.log(usersInfo)
+      res.send(usersInfo);
     })
 
     res.send('Hello, connected to Do-more server!')
