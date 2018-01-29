@@ -5,15 +5,9 @@ const cors = require('cors');
 const request = require('request');
 const Twit = require('twit');
 
-const config = {
+let CONSUMER_KEY;
+let CONSUMER_SECRET;
 
-    CONSUMER_KEY : "al5LN8w9gWcirowNLtxPHtoyf",
-    CONSUMER_SECRET: "rj0C0w5tiLFsvTx1ZeKxIrAd7LFR2Q5NN8nz1gul6YbzwV4ZJp",
-    ACCESS_TOKEN: "956486719737597952-Ig4vAK1ejhCaxsnc7SImpdeF3TxCq77",
-    ACCESS_TOKEN_SECRET: "05zoJ9pRgHe79vOT3oJeKQ9unMyApSA9rAJIsplJQ3pEu"
-
-
-}
 
 var corsOption = {
     origin: true,
@@ -35,8 +29,8 @@ app.route('/').post((req,res,next)=> {
     
 
     const T = new Twit({
-        consumer_key:         "al5LN8w9gWcirowNLtxPHtoyf",
-        consumer_secret:       "rj0C0w5tiLFsvTx1ZeKxIrAd7LFR2Q5NN8nz1gul6YbzwV4ZJp",
+        consumer_key:         CONSUMER_KEY,
+        consumer_secret:      CONSUMER_SECRET,
         access_token:         token,
         access_token_secret:  secret,
         timeout_ms:           60*1000,  // optional HTTP request timeout to apply to all requests. 
