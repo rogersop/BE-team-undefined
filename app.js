@@ -29,8 +29,8 @@ app.route('/').post((req,res,next)=> {
     
 
     const T = new Twit({
-        consumer_key:         CONSUMER_KEY,
-        consumer_secret:      CONSUMER_SECRET,
+        consumer_key:         process.env.CONSUMER_KEY,
+        consumer_secret:      process.env.CONSUMER_SECRET,
         access_token:         token,
         access_token_secret:  secret,
         timeout_ms:           60*1000,  // optional HTTP request timeout to apply to all requests. 
