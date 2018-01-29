@@ -64,7 +64,7 @@ app.route('/').post((req,res,next)=> {
       res.send(usersInfo);
     })
 
-    res.send('Hello, connected to Do-more server!')
+    // res.send('Hello, connected to Do-more server!')
 })
 
 
