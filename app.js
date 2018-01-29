@@ -27,9 +27,10 @@ var corsOption = {
 
 
 app.route('/').post((req,res,next)=> {
-
+    console.log(req.body)
     let token = req.body.token;
     let secret = req.body.secret;
+    
 
     const T = new Twit({
         consumer_key:         "al5LN8w9gWcirowNLtxPHtoyf",
