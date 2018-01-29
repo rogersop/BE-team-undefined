@@ -45,10 +45,12 @@ app.route('/').post((req,res,next)=> {
       let usersInfo = data.map((user, i)=> {
         
         let obj = {};
+        
          obj.name = user.user.name;
          obj.screen_name = user.user.screen_name;
          obj.text = user.text;
          obj.profile_image_url = user.user.profile_image_url;
+         obj.id = user.id_str;
          
          return obj;
         })
