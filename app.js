@@ -25,7 +25,10 @@ app.route('/').post((req,res,next)=> {
    
     let token = req.body.token;
     let secret = req.body.secret;
-    console.log(token) 
+    console.log(token, "TOKENNNN") 
+    console.log(secret, "SECRETTTT") 
+    console.log(process.env.CONSUMER_KEY)
+    console.log(process.env.CONSUMER_SECRET)
 
     const T = new Twit({
         consumer_key:         process.env.CONSUMER_KEY,
@@ -33,12 +36,12 @@ app.route('/').post((req,res,next)=> {
         access_token:         token,
         access_token_secret:  secret,
         timeout_ms:           60*1000,  // optional HTTP request timeout to apply to all requests. 
-   
-
     })
 
+
+
     T.get('/statuses/home_timeline', function(err, data, response){
-      // console.log('data', data);
+      console.log('data', data);
    
       let arr = [];
       let usersInfo = data.map((user, i)=> {
