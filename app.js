@@ -25,7 +25,7 @@ app.route('/').post((req,res,next)=> {
    
     let token = req.body.token;
     let secret = req.body.secret;
-    
+    console.log(token) 
 
     const T = new Twit({
         consumer_key:         process.env.CONSUMER_KEY,
