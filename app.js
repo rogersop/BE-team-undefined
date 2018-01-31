@@ -21,8 +21,7 @@ var corsOption = {
 
 
 app.route('/').post((req,res,next)=> {
-  console.log('hello')
-    console.log("REQ BODY", req.body)
+
    
     let token = req.body.token;
     let secret = req.body.secret;
@@ -40,7 +39,7 @@ app.route('/').post((req,res,next)=> {
 
     T.get('/statuses/home_timeline', function(err, data, response){
       // console.log('data', data);
-     console.log(data[0])
+   
       let arr = [];
       let usersInfo = data.map((user, i)=> {
         
@@ -55,8 +54,7 @@ app.route('/').post((req,res,next)=> {
          return obj;
         })
 
-    
-      console.log(usersInfo)
+
       res.send(usersInfo);
     })
 
